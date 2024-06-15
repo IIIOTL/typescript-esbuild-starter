@@ -1,0 +1,30 @@
+{
+  "name": "typescript-esbuild-starter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "clean": "rimraf ./dist",
+    "build": "pnpm run clean && esbuild src/main.ts --bundle --platform=node --packages=external --outdir=./dist",
+    "build:bundle": "pnpm run clean && esbuild src/main.ts --bundle --platform=node --outdir=./dist",
+    "build:debug": "pnpm run clean && esbuild src/main.ts --bundle --platform=node --packages=external --sourcemap --outdir=./dist",
+    "debug": "pnpm run build:debug && pnpm run start",
+    "start": "node dist/main.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.14.2",
+    "@typescript-eslint/eslint-plugin": "^7.13.0",
+    "@typescript-eslint/parser": "^7.13.0",
+    "esbuild": "^0.21.5",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "prettier": "^3.3.2",
+    "rimraf": "^5.0.7",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
+  }
+}
