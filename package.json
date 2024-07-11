@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "clean": "rimraf ./dist",
-    "build": "pnpm run clean && esbuild src/main.ts --bundle --platform=node --packages=external --outdir=./dist",
-    "build:bundle": "pnpm run clean && esbuild src/main.ts --bundle --platform=node --outdir=./dist",
-    "build:debug": "pnpm run clean && esbuild src/main.ts --bundle --platform=node --packages=external --sourcemap --outdir=./dist",
+    "build:jobs": "esbuild jobs/*.ts --outdir=dist --bundle=false --format=cjs --outdir=./dist/jobs",
+    "build": "pnpm run clean && pnpm build:jobs && esbuild src/main.ts --bundle --platform=node --packages=external --outdir=./dist",
+    "build:bundle": "pnpm run clean && pnpm run build:jobs && esbuild src/main.ts --bundle --platform=node --outdir=./dist",
+    "build:debug": "pnpm run clean && pnpm run build:jobs --sourcemap && esbuild src/main.ts --bundle --platform=node --packages=external --sourcemap --outdir=./dist",
     "debug": "pnpm run build:debug && pnpm run start",
     "start": "node dist/main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -26,5 +27,8 @@
     "rimraf": "^5.0.7",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "bree": "^9.2.3"
   }
 }
