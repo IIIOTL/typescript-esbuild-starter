@@ -1,7 +1,5 @@
-import process from 'node:process';
-import * as path from 'node:path';
 import Bree from 'bree';
-
+import { join } from 'node:path';
 const bree = new Bree({
   /**
    * Always set the root option when doing any type of
@@ -10,7 +8,7 @@ const bree = new Bree({
    * resolves to the jobs folder relative to where the program
    * is executed.
    */
-  root: path.join(__dirname, 'jobs'),
+  root: join(__dirname, 'jobs'),
   /**
    * We only need the default extension to be "ts"
    * when we are running the app with ts-node - otherwise
