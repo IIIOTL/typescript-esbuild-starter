@@ -1,0 +1,9 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    environment:
+      - NODE_ENV=production
+  # You can add other services like a database here if needed
+# Optional: Define networks, volumes, and other configurations as needed
